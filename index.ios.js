@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { AppRegistry, Navigator, Text, View } from 'react-native';
+// import Button from 'react-native-button'
+import Home from './Home';
 
-import MyScene from './MyScene';
-
-class SimpleNavigationApp extends Component {
+class CaGifApp extends Component {
   render() {
     return (
       <Navigator
-        initialRoute={{ title: 'My Initial Scene', index: 0 }}
+        initialRoute={{ title: 'Home', index: 0 }}
         renderScene={(route, navigator) =>
-          <MyScene
+          <Home
             title={route.title}
 
             // Function to call when a new scene should be displayed           
@@ -22,11 +22,11 @@ class SimpleNavigationApp extends Component {
             }}
 
             // Function to call to go back to the previous scene
-            onBack={() => {
-              if (route.index > 0) {
-                navigator.pop();
-              }
-            }}
+            // onBack={() => {
+            //   if (route.index > 0) {
+            //     navigator.pop();
+            //   }
+            // }}
           />
         }
       />
@@ -34,4 +34,4 @@ class SimpleNavigationApp extends Component {
   }
 }
 
-AppRegistry.registerComponent('CaGif', () => SimpleNavigationApp);
+AppRegistry.registerComponent('CaGif', () => CaGifApp);
