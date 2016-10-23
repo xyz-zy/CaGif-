@@ -22,8 +22,7 @@
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		4B5423051DBC5C5500743BDC /* CaGifTests in Resources */ = {isa = PBXBuildFile; fileRef = 4B5423041DBC5C5500743BDC /* CaGifTests */; };
-		4B5423191DBC62C400743BDC /* MicrosoftAzureMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B5423181DBC62C400743BDC /* MicrosoftAzureMobile.framework */; };
-		4B54231A1DBC62C400743BDC /* MicrosoftAzureMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B5423181DBC62C400743BDC /* MicrosoftAzureMobile.framework */; };
+		4B5423211DBC66A300743BDC /* libRCTAppleHealthKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B5423201DBC666700743BDC /* libRCTAppleHealthKit.a */; };
 		4BC1FD1D1DBC51DD00BDA330 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BC1FD1C1DBC51DD00BDA330 /* HealthKit.framework */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 /* End PBXBuildFile section */
@@ -92,6 +91,13 @@
 			remoteGlobalIDString = 83CBBA2E1A601D0E00E9B192;
 			remoteInfo = React;
 		};
+		4B54231F1DBC666700743BDC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4B54231B1DBC666700743BDC /* RCTAppleHealthKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3774C88D1D2092F20000B3F3;
+			remoteInfo = RCTAppleHealthKit;
+		};
 		78C398B81ACF4ADC00677621 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */;
@@ -127,7 +133,7 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = CaGif/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		4B5423041DBC5C5500743BDC /* CaGifTests */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CaGifTests; sourceTree = "<group>"; };
-		4B5423181DBC62C400743BDC /* MicrosoftAzureMobile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MicrosoftAzureMobile.framework; sourceTree = "<group>"; };
+		4B54231B1DBC666700743BDC /* RCTAppleHealthKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAppleHealthKit.xcodeproj; path = "../node_modules/react-native-apple-healthkit/RCTAppleHealthKit.xcodeproj"; sourceTree = "<group>"; };
 		4BC1FD1C1DBC51DD00BDA330 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		4BC1FD1E1DBC51DD00BDA330 /* CaGif.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = CaGif.entitlements; path = CaGif/CaGif.entitlements; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
@@ -140,7 +146,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */,
-				4B54231A1DBC62C400743BDC /* MicrosoftAzureMobile.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,6 +153,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B5423211DBC66A300743BDC /* libRCTAppleHealthKit.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
 				4BC1FD1D1DBC51DD00BDA330 /* HealthKit.framework in Frameworks */,
@@ -155,7 +161,6 @@
 				00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */,
 				133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */,
 				00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */,
-				4B5423191DBC62C400743BDC /* MicrosoftAzureMobile.framework in Frameworks */,
 				139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */,
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
@@ -245,10 +250,17 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		4B54231C1DBC666700743BDC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4B5423201DBC666700743BDC /* libRCTAppleHealthKit.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		4BC1FD1B1DBC51DD00BDA330 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4B5423181DBC62C400743BDC /* MicrosoftAzureMobile.framework */,
 				4BC1FD1C1DBC51DD00BDA330 /* HealthKit.framework */,
 			);
 			name = Frameworks;
@@ -265,6 +277,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				4B54231B1DBC666700743BDC /* RCTAppleHealthKit.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
 				00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */,
@@ -388,6 +401,10 @@
 					ProjectRef = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
 				},
 				{
+					ProductGroup = 4B54231C1DBC666700743BDC /* Products */;
+					ProjectRef = 4B54231B1DBC666700743BDC /* RCTAppleHealthKit.xcodeproj */;
+				},
+				{
 					ProductGroup = 00C302B61ABCB90400DB3ED1 /* Products */;
 					ProjectRef = 00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */;
 				},
@@ -487,6 +504,13 @@
 			fileType = archive.ar;
 			path = libReact.a;
 			remoteRef = 146834031AC3E56700842450 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4B5423201DBC666700743BDC /* libRCTAppleHealthKit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTAppleHealthKit.a;
+			remoteRef = 4B54231F1DBC666700743BDC /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		78C398B91ACF4ADC00677621 /* libRCTLinking.a */ = {
