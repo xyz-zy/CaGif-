@@ -2,7 +2,13 @@ import React, { Component} from 'react';
 import { AppRegistry, Navigator, Text, View, TouchableHighlight, Image, ScrollView, StyleSheet, AsyncStorage} from 'react-native';
 
 export default class Inventory extends Component{
+  constructor(props) {
+    super(props);
+    this.state = {hungerV: 0, happinessV: 0, healthV: 0};
+  }
+  
   render() {
+    console.log('inventory state' + this.state.hungerV);
     return (
         <Image 
           source = {require('../graphics/InventoryBackground.jpg')}
@@ -14,10 +20,13 @@ export default class Inventory extends Component{
   }
 
   renderBackButton() {
+    //             this._reactInternalInstance._currentElement._owner._instance.setState({hv: this.state.hungerV});
     return(
       <View>
         <Text> Inventory </Text>
           <TouchableHighlight onPress= {() => {
+            console.log('calling changeState ' + this.state.hungerV)
+            this.props.changeStats(this.state.healthV, this.state.hungerV, this.state.happinessV);
               this.props.navigator.pop();
             }}>
             <Text>
@@ -34,7 +43,7 @@ export default class Inventory extends Component{
         <View marginTop = {125} marginBottom = {150} flex = {1} flexDirection = 'column' justifyContent = 'space-around'>
            <ScrollView horizontal = {true} justifyContent = 'center' maxHeight = {83}>
            <TouchableHighlight onPress={() => {
-           AsyncStorage.setItem('PetData:hunger', '100');
+              this.incrementHunger(20)
            }}>
            <Image
             style={{width: 83, height: 83}}
@@ -42,7 +51,7 @@ export default class Inventory extends Component{
            </Image>
         </TouchableHighlight>
         <TouchableHighlight onPress={() => {
-           AsyncStorage.setItem('PetData:hunger', this.incrementHunger(20));
+              this.incrementHunger(20);
            }}>
            <Image
            style={{width: 83, height: 83}}
@@ -52,7 +61,7 @@ export default class Inventory extends Component{
       </ScrollView>
            <ScrollView horizontal = {true} justifyContent = 'center' maxHeight = {83}>
            <TouchableHighlight onPress={() => {
-           AsyncStorage.setItem('PetData:happiness', this.incrementHappiness(20))
+              this.incrementHappiness(20);
            }}>
            <Image
            style={{width: 83, height: 83}}
@@ -60,7 +69,7 @@ export default class Inventory extends Component{
            </Image>
            </TouchableHighlight>
            <TouchableHighlight onPress={() => {
-           AsyncStorage.setItem('PetData:happiness', this.incrementHappiness(20))
+              this.incrementHappiness(20);
            }}>
            <Image
            style={{width: 83, height: 83}}
@@ -74,14 +83,18 @@ export default class Inventory extends Component{
     
     
     incrementHunger(hungerPoints){
-        let current = parseInt(AsyncStorage.getItem('PetData:hunger'));
-        current  = current + parseInt(hungerPoints);
-        return current.toString();
+      this.state.hungerV = this.state.hungerV + hungerPoints;
+      console.log('child' + this.state.hungerV);
+      
     }
     
     incrementHappiness(happinessPoints){
-        let current = parseInt(AsyncStorage.getItem('PetData:happiness'));
-        current  = current + parseInt(happinessPoints);
-        return current.toString();
+      this.state.happinessV = this.state.happinessV + happinessPoints;
+      console.log('child' + this.state.happinessV);
+    }
+
+    incrementHealth(healthPoints){
+      this.state.healthV = this.state.healthV + healthPoints;
+      console.log('child' + this.state.healthV);
     }
 }
