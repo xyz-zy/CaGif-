@@ -12,20 +12,29 @@ class CaGifApp extends Component {
 
   constructor() {
     super();
-    this.state = {healthStat: 0, hungerStat: 0, happinessStat: 0};
+    this.state = {healthStat: 0, hungerStat: 0, happinessStat: 0, pawPoints : 100};
     this.addHunger = this.addHunger.bind(this);
-    this.getHunger = this.getHunger.bind(this);
-    this.addStats = this.addStats.bind(this);
+      this.addStats = this.addStats.bind(this);
+      this.getHealth = this.getHealth.bind(this);
+      this.getHunger = this.getHunger.bind(this);
+      this.getHappiness = this.getHappiness.bind(this);
+
+      this.addPawPoints = this.addPawPoints.bind(this);
+      this.getPawPoints = this.getPawPoints.bind(this);
+
+
   }
 
   render() {
-
     return (
       <Navigator
         initialRoute={{ title: 'Home' }}
         renderScene={(route, navigator) => {
           if(route.title == "Home"){
-            return <Home navigator = {navigator} getHungerStat = {this.getHunger}/>;
+            return <Home navigator = {navigator}
+                         getHealthStat = {this.getHealth}
+                         getHungerStat = {this.getHunger}
+                         getHappinessStat = {this.getHappiness}/>;
           }
           if(route.title == "Inventory"){
             return <Inventory navigator = {navigator} changeStats = {this.addStats}/>;
@@ -34,20 +43,12 @@ class CaGifApp extends Component {
               return <CashIn navigator = {navigator}/>;
           }
           if(route.title == "Store"){
-                return <Store navigator = {navigator}/>;
+                return <Store navigator = {navigator} addPP = {this.addPawPoints} getPP = {this.getPawPoints} />;
           }
           return <NotFound/>;
           }
         }
           />);
-  }
-  
-  addHunger(hungerPoints){
-    this.state.hungerStat = this.state.hungerStat + hungerPoints;
-  }
-
-  getHunger() {
-    return this.state.hungerStat;
   }
 
   addStats(healthPoints, hungerPoints, happinessPoints) {
@@ -56,6 +57,25 @@ class CaGifApp extends Component {
     this.state.happinessStat = this.state.happinessStat + happinessPoints;    
   }
 
+    getHealth() {
+        return this.state.healthStat;
+    }
+
+    getHunger() {
+        return this.state.hungerStat;
+    }
+
+    getHappiness() {
+        return this.state.happinessStat;
+    }
+
+    addPawPoints(amount) {
+        this.state.pawPoints = this.state.pawPoints + amount;
+    }
+
+    getPawPoints() {
+        return this.state.pawPoints;
+    }
 
 }
 
