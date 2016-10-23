@@ -40,11 +40,6 @@ export default class Home extends Component{
                 }}>
                 <Text>Go To Inventory</Text>
             </TouchableHighlight>
-            <TouchableHighlight onPress={() => {
-                  this.props.navigator.push({title: "CashIn"})
-                }}>
-                <Text>Go To CashIn</Text>
-            </TouchableHighlight>
         </View>
     );
   }
@@ -59,6 +54,7 @@ export default class Home extends Component{
         left = {5}
         alignItems = 'center'
         >
+          renderMenuButtons();
       </Image>
     );
   }
@@ -67,6 +63,9 @@ export default class Home extends Component{
   renderMenuButtons() {
     return(
       <View>
+          renderHealth();
+          renderHunger();
+          renderHappiness();
         <TouchableHighlight onPress={() => {
           this.props.navigator.push({title: "CashIn"})
           }}>
