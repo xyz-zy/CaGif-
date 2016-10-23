@@ -20,9 +20,6 @@ export default class Home extends Component{
           {this.renderTopButtons()}
           {this.renderMenu()}
           {this.renderSprite()}
-          <View style={{flex:1, alignItems:'flex-end', flexDirection:'row', justifyContent:'space-between'}}>
-           {this.renderHunger()}
-          </View>
       </Image>
     );
   }
@@ -128,7 +125,7 @@ renderSprite() {
 }
   renderTopButtons(){
     return(
-      <View flexDirection = 'row' justifyContent = 'space-between' top={30} left = {15} right = {15}>
+      <View flexDirection = 'row' justifyContent = 'space-between' top={30} marginLeft = {10} marginRight = {10}>
             <TouchableHighlight onPress={() => {
                   this.props.navigator.push({title: "Store"})
                 }}>
@@ -146,10 +143,10 @@ renderSprite() {
           }}>
               <Image
                   style={{width: 83, height: 83}}
-                  source={require('../graphics/backpack.png')}>
+                  source={require('../graphics/iconBG2.png')}>
                 <Image
                     style={{width: 83, height: 83}}
-                    source={require('../graphics/storeIcon.png')}>
+                    source={require('../graphics/backpack.png')}>
                 </Image>
               </Image>
           </TouchableHighlight>
@@ -175,7 +172,7 @@ renderSprite() {
 
   renderMenuButtons() {
     return(
-      <View flexDirection = 'row' left = {20} right = {20} justifyContent = 'space-between'>
+      <View flexDirection = 'row' left = {0} right = {20} top = {5} justifyContent = 'space-between'>
           {this.renderHealth()}
           {this.renderHunger()}
           {this.renderHappiness()}
@@ -240,13 +237,13 @@ renderSprite() {
   	let imgFile = require('../graphics/happiness1.png');
     health = this.props.getHungerStat();
     if (health > 67) {
-      imgFile = require('../graphics/hunger3.png');
+      imgFile = require('../graphics/happiness3.png');
     }
     else if (health > 33) {
-      imgFile = require('../graphics/hunger2.png');
+      imgFile = require('../graphics/happiness2.png');
     }
     else {
-      imgFile = require('../graphics/hunger1.png');
+      imgFile = require('../graphics/happiness1.png');
     }
     return (
        <Image source = {imgFile} style = {{width: 83, height: 83}}/>

@@ -6,7 +6,7 @@ import CashIn from './js/CashIn';
 import Inventory from './js/Inventory';
 import NotFound from './js/NotFound';
 import Store from './js/Store';
-import Sprite from './js/Sprite';
+//import Sprite from './js/Sprite';
 
 
 class CaGifApp extends Component {

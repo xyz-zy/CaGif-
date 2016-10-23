@@ -13,25 +13,21 @@ export default class Inventory extends Component{
         <Image 
           source = {require('../graphics/InventoryBackground.jpg')}
           style = {{flex: 1, width: null, height: null}}>
-          {this.renderBackButton()}
           {this.renderFood()}
+          {this.renderBackButton()}
         </Image>
     );
   }
 
   renderBackButton() {
-    //             this._reactInternalInstance._currentElement._owner._instance.setState({hv: this.state.hungerV});
     return(
-      <View>
-        <Text> Inventory </Text>
+      <View style = {{flex:1, alignItems: 'flex-end'}} >
           <TouchableHighlight onPress= {() => {
             console.log('calling changeState ' + this.state.hungerV)
             this.props.changeStats(this.state.healthV, this.state.hungerV, this.state.happinessV);
               this.props.navigator.pop();
             }}>
-            <Text>
-              Go To Home
-            </Text>
+            <Image source = {require('../graphics/back.png')} style = {{width: 83, height: 83}}/>
           </TouchableHighlight>
       </View>
     );
