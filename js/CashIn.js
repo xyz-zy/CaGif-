@@ -3,9 +3,6 @@ import { AppRegistry, Navigator, Text, View, TouchableHighlight, AysncStorage } 
 import AppleHealthKit from 'react-native-apple-healthkit';
  
 
-// get the available permissions from AppleHealthKit.Constants object 
-const PERMS = AppleHealthKit.Constants.Permissions;
-
 export default class CashIn extends Component{
   constructor(props){
     super(props);
