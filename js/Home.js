@@ -19,7 +19,9 @@ export default class Home extends Component{
           style = {{flex: 1, width: null, height: null}}>
           {this.renderTopButtons()}
           {this.renderMenu()}
+          <View flexDirection = 'column' alignSelf = 'center' marginTop = {50}>
           {this.renderSprite()}
+          </View>
       </Image>
     );
   }
@@ -190,7 +192,7 @@ renderSprite() {
   
   renderHealth() {
   	let imgFile = require('../graphics/health0.png');
-    health = this.props.getHungerStat();
+    health = this.props.getHungerStat() *.5 + this.props.getHappinessStat() *.5;
     if (health > 80) {
       imgFile = require('../graphics/health4.png');
     }
@@ -214,14 +216,14 @@ renderSprite() {
 
   renderHunger() {
   	let imgFile = require('../graphics/hunger0.png');
-    health = this.props.getHungerStat();
-    if (health > 75) {
+    hunger = this.props.getHungerStat();
+    if (hunger > 75) {
       imgFile = require('../graphics/hunger3.png');
     }
-    else if (health > 50) {
+    else if (hunger > 50) {
       imgFile = require('../graphics/hunger2.png');
     }
-    else if (health > 25) {
+    else if (hunger > 25) {
       imgFile = require('../graphics/hunger1.png');
     }
     else {
@@ -235,11 +237,11 @@ renderSprite() {
 
   renderHappiness() {
   	let imgFile = require('../graphics/happiness1.png');
-    health = this.props.getHungerStat();
-    if (health > 67) {
+    happiness = this.props.getHappinessStat();
+    if (happiness > 67) {
       imgFile = require('../graphics/happiness3.png');
     }
-    else if (health > 33) {
+    else if (happiness > 33) {
       imgFile = require('../graphics/happiness2.png');
     }
     else {

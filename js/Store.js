@@ -12,9 +12,9 @@ export default class Store extends Component{
         return (
             <Image
                 source = {require('../graphics/storeBackground.jpg')}
-                style = {{flex: 1, width: null, height: null}}>
-                {this.renderBackButton()}
+                style = {{flex: 1, width: null, height: null, alignItems: 'center'}}>
                 {this.renderFood()}
+                {this.renderBackButton()}
             </Image>
         );
     }
@@ -22,26 +22,21 @@ export default class Store extends Component{
     renderBackButton() {
         //             this._reactInternalInstance._currentElement._owner._instance.setState({hv: this.state.hungerV});
         return(
-            <View>
-                <Text> Inventory </Text>
+            <View flex = {1} justifyContent = 'center'>
                 <TouchableHighlight onPress= {() => {
-                    console.log('calling changeState ' + this.state.hungerV)
                     this.props.addPP(this.state.changeInPP);
                     this.props.navigator.pop();
                 }}>
-                    <Text>
-                        Go To Home
-                    </Text>
+                    <Image source = {require('../graphics/back.png')} style = {{width: 83, height: 83}}/>
                 </TouchableHighlight>
             </View>
         );
     }
 
     renderFood() {
-        const styles = StyleSheet.create({ contentContainer: { justifyContent: 'center' } });
-        return(
-            <View marginTop = {125} marginBottom = {150} flex = {1} flexDirection = 'column' justifyContent = 'space-around'>
-                <ScrollView horizontal = {true} justifyContent = 'center' maxHeight = {83}>
+       return(
+            <View flex = {2} flexDirection = 'column' justifyContent = 'space-between' marginTop = {200}>
+                <ScrollView horizontal = {true} alignSelf = 'center' maxHeight = {83}>
                     <TouchableHighlight onPress={() => {
                         this.buy(20)
                     }}>
@@ -59,7 +54,7 @@ export default class Store extends Component{
                         </Image>
                     </TouchableHighlight>
                 </ScrollView>
-                <ScrollView horizontal = {true} justifyContent = 'center' maxHeight = {83}>
+                <ScrollView horizontal = {true} alignSelf = 'center' maxHeight = {83}>
                     <TouchableHighlight onPress={() => {
                         this.buy(20);
                     }}>
