@@ -25,11 +25,8 @@ class CaGifApp extends Component {
   render() {
     return (
       <Navigator
-        initialRoute={{ title: 'Home' }}
+        initialRoute={{ title: "Home" }}
         renderScene={(route, navigator) => {
-          if(route.title == "Sprite"){
-            return <Sprite navigator = {navigator} getHungerStat = {this.getHunger}/>;
-          }
           if(route.title == "Home"){
             return <Home navigator = {navigator}
                          getHealthStat = {this.getHealth}
