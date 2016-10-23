@@ -13,7 +13,7 @@ export default class Home extends Component{
       <Image 
           source = {require('../graphics/background.png')}
           style = {{flex: 1, width: null, height: null}}>
-          {this.renderButtons()}
+          {this.renderTopButtons()}
           {this.renderMenu()}
           <View style={{flex:1, alignItems:'flex-end', flexDirection:'row', justifyContent:'space-between'}}>
            {this.renderHunger()}
@@ -22,24 +22,25 @@ export default class Home extends Component{
     );
   }
 
-  renderButtons(){
+  renderTopButtons(){
     return(
-      <View>
-            <Text> Home </Text>
+      <View flexDirection = 'row' justifyContent = 'space-between' top='15' left = '5' right = '5'>
             <TouchableHighlight onPress={() => {
                   this.props.navigator.push({title: "Store"})
                 }}>
                 <Image 
-                  style={{width: 20, height: 20}}
-                  source={{uri:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Smiley.svg/2000px-Smiley.svg.png'}}>
+                  style={{width: 83, height: 83}}
+                  source={require('../storeIcon.png')}>
                 </Image>
             </TouchableHighlight>
-            <TouchableHighlight onPress={() => {
-
-                  this.props.navigator.push({title: "Inventory"})
-                }}>
-                <Text>Go To Inventory</Text>
-            </TouchableHighlight>
+          <TouchableHighlight onPress={() => {
+              this.props.navigator.push({title: "Inventory"})
+          }}>
+              <Image
+                  style={{width: 83, height: 83}}
+                  source={require('../backpack.png')}>
+              </Image>
+          </TouchableHighlight>
         </View>
     );
   }
