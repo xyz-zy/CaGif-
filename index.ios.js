@@ -6,6 +6,7 @@ import CashIn from './js/CashIn';
 import Inventory from './js/Inventory';
 import NotFound from './js/NotFound';
 import Store from './js/Store';
+import Sprite from './js/Sprite';
 
 
 class CaGifApp extends Component {
@@ -22,10 +23,10 @@ class CaGifApp extends Component {
 
     return (
       <Navigator
-        initialRoute={{ title: 'Home' }}
+        initialRoute={{ title: 'Sprite' }}
         renderScene={(route, navigator) => {
-          if(route.title == "Home"){
-            return <Home navigator = {navigator} getHungerStat = {this.getHunger}/>;
+          if(route.title == "Sprite"){
+            return <Sprite navigator = {navigator} getHungerStat = {this.getHunger}/>;
           }
           if(route.title == "Inventory"){
             return <Inventory navigator = {navigator} changeStats = {this.addStats}/>;

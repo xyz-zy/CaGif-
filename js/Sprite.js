@@ -1,32 +1,189 @@
 import React, { Component } from 'react';
-import { AppRegistry, Navigator, Text, View, TouchableHighlight } from 'react-native';
+import { AppRegistry, Navigator, Text, View, TouchableHighlight, AsyncStorage, Image, ScrollView, ListView } from 'react-native';
+import {CaGifApp} from '../index.ios.js';
 
+export default class Sprite extends Component{
 
-class Sprite extends Component {
   constructor(props) {
-    super(props);
-    this.state = {health: 100, fullness: 100, happiness: 100};
+    super(props); 
+    this.counter = 0;
+    }
 
-    // Toggle the state every second
-    setInterval(() => {
-      this.setState({ health: health - 1, fullness: fullness - 1, happiness: happiness - 1});
-    }, 3000);
-  }
-
-  render() {
-  	let display = this.state.health;
-  	return (
-  		<View>
-		  	<Text> Store </Text>
-		          <TouchableHighlight onPress= {() => {
-		              this.props.navigator.pop();
-		            }}>
-		            <Text>
-		              Go To Home
-		            </Text>
-		          </TouchableHighlight>
-		      <Text>{display}</Text>
-		</View>
+  render(){
+    return (
+      <Image 
+          source = {require('../graphics/background.png')}
+          style = {{flex: 1, width: null, height: null}}>
+          {this.renderButtons()}
+          {this.renderMenu()}
+          <View style={{flex:1, alignItems:'flex-end', flexDirection:'row', justifyContent:'space-between'}}>
+           {this.renderHunger()}
+           {this.renderSprite()}
+          </View>
+      </Image>
     );
   }
+
+renderSprite() {
+	let imgFile = require('../graphics/cat/idle1.png');
+    health = this.props.getHungerStat();
+    if (this.counter == 1) {
+      imgFile = require('../graphics/cat/idle1.png');
+    }
+    else if (this.counter == 2) {
+      imgFile = require('../graphics/cat/idle2.png');
+    }
+    else if (this.counter == 3) {
+      imgFile = require('../graphics/cat/idle3.png');
+    }
+    else if (this.counter == 4){
+      imgFile = require('../graphics/cat/idle4.png');
+    } 
+    else if (this.counter == 5) {
+      imgFile = require('../graphics/cat/idle5.png');
+    }
+    else if (this.counter == 6) {
+      imgFile = require('../graphics/cat/idle6.png');
+    }
+    else if (this.counter == 7) {
+      imgFile = require('../graphics/cat/idle7.png');
+    }
+    else if (this.counter == 8) {
+      imgFile = require('../graphics/cat/idle8.png');
+    }
+    else if (this.counter == 9) {
+      imgFile = require('../graphics/cat/idle9.png');
+    }
+    else if (this.counter == 10) {
+      imgFile = require('../graphics/cat/idle10.png');
+    }
+    counter = counter + 1;
+    if (counter = 11) {
+    	counter = 1;
+    }
+    return (
+       <Image source = {imgFile} style = {{width: 60, height: 60}}/>
+    	);
+}
+
+  renderButtons(){
+    return(
+      <View>
+            <Text> Home </Text>
+            <TouchableHighlight onPress={() => {
+                  this.props.navigator.push({title: "Store"})
+                }}>
+                <Image 
+                  style={{width: 20, height: 20}}
+                  source={{uri:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Smiley.svg/2000px-Smiley.svg.png'}}>
+                </Image>
+            </TouchableHighlight>
+            <TouchableHighlight onPress={() => {
+
+                  this.props.navigator.push({title: "Inventory"})
+                }}>
+                <Text>Go To Inventory</Text>
+            </TouchableHighlight>
+            <TouchableHighlight onPress={() => {
+                  this.props.navigator.push({title: "CashIn"})
+                }}>
+                <Text>Go To CashIn</Text>
+            </TouchableHighlight>
+        </View>
+    );
+  }
+
+  
+  renderMenu(){
+    return(
+      <Image 
+        source = {require('../graphics/menuBar.png')}
+        position = 'absolute'
+        bottom = {0}
+        left = {5}
+        alignItems = 'center'
+        >
+      </Image>
+    );
+  }
+
+
+  renderMenuButtons() {
+    return(
+      <View>
+        <TouchableHighlight onPress={() => {
+          this.props.navigator.push({title: "CashIn"})
+          }}>
+          <Image
+            source = {require('../graphics/coin.png')}
+            >
+          </Image>
+        </TouchableHighlight>
+      </View>
+    );
+  }
+  
+  renderHealth() {
+  	let imgFile = require('../graphics/health0.png');
+    health = this.props.getHungerStat();
+    if (health > 80) {
+      imgFile = require('../graphics/health4.png');
+    }
+    else if (health > 60) {
+      imgFile = require('../graphics/health3.png');
+    }
+    else if (health > 40) {
+      imgFile = require('../graphics/health2.png');
+    }
+    else if (health > 20){
+      imgFile = require('../graphics/health1.png');
+    } 
+    else {
+      imgFile = require('../graphics/health0.png');
+    }
+    return (
+       <Image source = {imgFile} style = {{width: 60, height: 60}}/>
+    	);
+
+  }
+
+  renderHunger() {
+  	let imgFile = require('../graphics/hunger0.png');
+    health = this.props.getHungerStat();
+    if (health > 75) {
+      imgFile = require('../graphics/hunger3.png');
+    }
+    else if (health > 50) {
+      imgFile = require('../graphics/hunger2.png');
+    }
+    else if (health > 25) {
+      imgFile = require('../graphics/hunger1.png');
+    }
+    else {
+      imgFile = require('../graphics/hunger0.png');
+    }
+    return (
+       <Image source = {imgFile} style = {{width: 60, height: 60}}/>
+    	);
+
+  }
+
+  renderHappiness() {
+  	let imgFile = require('../graphics/happiness1.png');
+    health = this.props.getHungerStat();
+    if (health > 67) {
+      imgFile = require('../graphics/hunger3.png');
+    }
+    else if (health > 33) {
+      imgFile = require('../graphics/hunger2.png');
+    }
+    else {
+      imgFile = require('../graphics/hunger1.png');
+    }
+    return (
+       <Image source = {imgFile} style = {{width: 60, height: 60}}/>
+    );
+
+  }
+ 
 }
