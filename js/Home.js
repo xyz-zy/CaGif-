@@ -5,8 +5,7 @@ import {CaGifApp} from '../index.ios.js';
 export default class Home extends Component{
 
   constructor(props) {
-    super(props); 
-      this.state = {hungerV: this.props.hungerValue};
+    super(props);
     }
 
   render(){
