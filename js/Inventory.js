@@ -31,22 +31,10 @@ export default class Inventory extends Component{
   renderFood() {
     const styles = StyleSheet.create({ contentContainer: { justifyContent: 'center' } });
     return(
-/*    <View>
-      <ScrollView horizontal = {true}/>
-        <Image 
-          source = {require('../graphics/InventoryBackground.jpg')}>
-        </Image>
-      </ScrollView>
-    </View>
- <Image
- source = {require('../graphics/canFish.png')}
- style = {{height : 83, width :83}}>
- </Image>
- */
-           <View marginTop = {125} marginBottom = {150} flex = {1} flexDirection = 'column' justifyContent = 'space-around'>
+        <View marginTop = {125} marginBottom = {150} flex = {1} flexDirection = 'column' justifyContent = 'space-around'>
            <ScrollView horizontal = {true} justifyContent = 'center' maxHeight = {83}>
            <TouchableHighlight onPress={() => {
-           AsyncStorage.setItem('PetData:hunger', this.incrementHunger(20))
+           AsyncStorage.setItem('PetData:hunger', '100');
            }}>
            <Image
             style={{width: 83, height: 83}}
@@ -54,7 +42,7 @@ export default class Inventory extends Component{
            </Image>
         </TouchableHighlight>
         <TouchableHighlight onPress={() => {
-           AsyncStorage.setItem('PetData:hunger', this.incrementHunger(20))
+           AsyncStorage.setItem('PetData:hunger', this.incrementHunger(20));
            }}>
            <Image
            style={{width: 83, height: 83}}

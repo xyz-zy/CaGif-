@@ -1,52 +1,79 @@
 import React, { Component } from 'react';
 import { AppRegistry, Navigator, Text, View, TouchableHighlight, AsyncStorage, Image, ScrollView, ListView } from 'react-native';
+/*
+class HungerVal extends Component{
+	constructor(props){
+		super(props);
+		this.props;
+		this.state = {health: AsyncStorage.getItem('PetData:hunger')};
+	}
 
-  class Sprite extends Component {
-    constructor(props) {
-      super(props);
+	render() {
+//		this.state = {health: AsyncStorage.getItem('PetData:hunger')};
+	  	let imgFile = require('../graphics/hunger0.png');
+	  	var health = parseInt(this.state.health);
+	    if (health > 75) {
+	      imgFile = require('../graphics/hunger3.png');
+	    }
+	    else if (health > 50) {
+	      imgFile = require('../graphics/hunger2.png');
+	    }
+	    else if (health > 25) {
+	      imgFile = require('../graphics/hunger1.png');
+	    }
+	    else {
+	      imgFile = require('../graphics/hunger0.png');
+	    }
+	    return (
+	       <Image source = {imgFile} style = {{width: 50, height: 50}}/>
+	    	);
 
-      // Toggle the state every second
-
-    }
-  }
-
+  	}
+}
+*/
 export default class Home extends Component{
 
-  constructor() {
-    super();
-    //const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    //this.state = {health: require('../graphics/hunger0.png'), fullness: require('../graphics/hunger0.png'), happiness: require('../graphics/hunger0.png')};
-    setInterval(() => {this.update();}, 3000);
+  constructor(props) {
+    super(props); 
+//    this.state = {health: require('../graphics/hunger0.png'), fullness: require('../graphics/hunger0.png'), happiness: require('../graphics/hunger0.png')};
+ //   setInterval(() => {this.update();}, 3000);
+ //		AsyncStorage.setItem('PetData:hunger', '0');
+// 		this.state = {health: AsyncStorage.getItem('PetData:hunger')};
     }
 
   update() {
     //based on the stats, we'll update the pictures
-    var health = parseInt(AsyncStorage.getItem('PetData:hunger'));
-    if (health > 75) {
-      this.setState(health: require('../graphics/hunger3.png'));
+    var h = AsyncStorage.getItem('PetData:hunger');
+    if (h != null) {
+    	this.setState({health: h});
     }
-    else if (health > 50) {
-      this.setState(health: require('../graphics/hunger2.png'));
-    }
-    else if (health > 25) {
-      this.setState(health: require('../graphics/hunger1.png'));
-    }
-    else {
-      this.setState(health: require('../graphics/hunger3.png'));
-    }
+    // if (health > 75) {
+    //   this.setState({health: require('../graphics/hunger3.png')});
+    // }
+    // else if (health > 50) {
+    //   this.setState({health: require('../graphics/hunger2.png')});
+    // }
+    // else if (health > 25) {
+    //   this.setState({health: require('../graphics/hunger1.png')});
+    // }
+    // else {
+    //   this.setState({health: require('../graphics/hunger0.png')});
+    // }
     // this.state.health = parseInt(AsyncStorage.getItem('PetData:hunger'));
     // this.state.fullness = parseInt(AsyncStorage.getElementsByTagName(''))
+    //<Image source = {this.state.fullness} style = {{width: 50, height: 50}}/>
   }
 
   render() {
+//  	this.update();
     return (
       <Image 
           source = {require('../graphics/background.png')}
           style = {{flex: 1, width: null, height: null}}>
+          <Text>{this.props.h}</Text>
           {this.renderButtons()}
           <View style={{flex:1, alignItems:'flex-end', flexDirection:'row', justifyContent:'space-between'}}>
-            <Image source = {this.state.health} style = {{width: 500, height: 500}}/>
-            <Image source = {this.state.fullness} style = {{width: 500, height: 500}}/>
+           <this.props.h/>
           </View>
       </Image>
     );
@@ -77,4 +104,29 @@ export default class Home extends Component{
         </View>
     );
   }
+
+
+
+/*
+  renderHealth() {
+  	let imgFile = require('../graphics/hunger0.png');
+  	var health = parseInt(HungerVal blah state.health);
+    if (health > 75) {
+      imgFile = require('../graphics/hunger3.png');
+    }
+    else if (health > 50) {
+      imgFile = require('../graphics/hunger2.png');
+    }
+    else if (health > 25) {
+      imgFile = require('../graphics/hunger1.png');
+    }
+    else {
+      imgFile = require('../graphics/hunger0.png');
+    }
+    return (
+       <Image source = {imgFile} style = {{width: 50, height: 50}}/>
+    	);
+
+  }
+  */
 }
