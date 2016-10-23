@@ -18,34 +18,39 @@ export default class CashIn extends Component{
     let lastStepTimeStamp = -1;
     let lastNumSteps = -1;
     let currentNumSteps = -1;
-    AppleHealthKit.initHealthKit(options: Object, (err: Object, res: Object) => {
-    if(err) {
-        this.setState({steps: "Error Initializing HealthKit"});
-        return;
+    AppleHealthKit.isAvailable((err: Object, available: boolean) => {
+    if(available){
+        this.state = {steps: "HK Available"};
     }
-    // healthkit initialized... 
-    let lastTimeStamp = this.getKeyFromStorage('HealthData:lastTimestamp');
-    if(lastTimeStamp == undefined){
-      lastTimeStamp = (new Date()).toISOString();
-      this.setKeyToStorage('HealthData:lastTimestamp',curTimeStamp);
-    }
-    let aggregate = this.getKeyFromStorage("HealthData:aggregate");
-    if(aggregate == undefined){
-      aggregate = 0;
-      this.setKeyToStorage("HealthData:aggregate",aggregate);
-    }
-    let now = (new Date()).toISOString();
-    aggregate = aggregate + this.getStepCountsBetween(lastTimeStamp,now);
-    lastTimeStamp = now;
-    this.setKeyToStorage("HealthData:aggregate",aggregate);
-    this.setKeyToStorage('HealthData:lastTimestamp', lastTimeStamp);
-});
+    });
+//    AppleHealthKit.initHealthKit(options: Object, (err: Object, res: Object) => {
+//    if(err) {
+//        this.setState({steps: "Error Initializing HealthKit"});
+//        return;
+//    }
+//    // healthkit initialized... 
+//    let lastTimeStamp = this.getKeyFromStorage('HealthData:lastTimestamp');
+//    if(lastTimeStamp == undefined){
+//      lastTimeStamp = (new Date()).toISOString();
+//      this.setKeyToStorage('HealthData:lastTimestamp',curTimeStamp);
+//    }
+//    let aggregate = this.getKeyFromStorage("HealthData:aggregate");
+//    if(aggregate == undefined){
+//      aggregate = 0;
+//      this.setKeyToStorage("HealthData:aggregate",aggregate);
+//    }
+//    let now = (new Date()).toISOString();
+//    aggregate = aggregate + this.getStepCountsBetween(lastTimeStamp,now);
+//    lastTimeStamp = now;
+//    this.setKeyToStorage("HealthData:aggregate",aggregate);
+//    this.setKeyToStorage('HealthData:lastTimestamp', lastTimeStamp);
+//});
   }
   render() {
     return (
       <View style= {{}}>
-        <Text> CashIn </Text>
-        <Text></Text>
+        <Text style={{paddingTop:10}}> CashIn </Text>
+        <Text>this.state.text</Text>
           <TouchableHighlight onPress= {() => {
               this.props.navigator.pop();
             }}>
