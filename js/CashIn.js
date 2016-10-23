@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { AppRegistry, Navigator, Text, View, TouchableHighlight, AysncStorage } from 'react-native';
-import AppleHealthKit from 'react-native-apple-healthkit';
+
+var AppleHealthKit = require('react-native-apple-healthkit');
  
 
 export default class CashIn extends Component{
@@ -55,7 +56,7 @@ export default class CashIn extends Component{
       </View>
     );
   }
-  getKeyFromStorage(key){
+  async getKeyFromStorage(key){
     try {
       const value = await AsyncStorage.getItem(key);
       if (value !== null){
@@ -68,7 +69,7 @@ export default class CashIn extends Component{
     }
   }
 
-  setKeyToStorage(key,value){
+  async setKeyToStorage(key,value){
     try {
       await AsyncStorage.setItem(key,value);
     } catch (error) {
@@ -88,6 +89,17 @@ export default class CashIn extends Component{
       startDate: startTS,  // required 
       endDate:   endTS         // optional; default now 
     };
+    
+    let retVal = -1;
+    AppleHealthKit.getDailyStepCountSamples(options, (err, res) => {
+      if(this._handleHealthKitError(err, 'getDailyStepCountSamples')){
+        return;
+      }
+        retVal = res[0].value;
+      }
+    );
+    
+    return retVal;
   }
 
 
