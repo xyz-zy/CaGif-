@@ -17,7 +17,7 @@ export default class Home extends Component{
           {this.renderButtons()}
           {this.renderMenu()}
           <View style={{flex:1, alignItems:'flex-end', flexDirection:'row', justifyContent:'space-between'}}>
-           {this.renderHealth()}
+           {this.renderHunger()}
           </View>
       </Image>
     );
@@ -68,22 +68,43 @@ export default class Home extends Component{
   renderMenuButtons() {
     return(
       <View>
-      <TouchableHighlight onPress={() => {
-        this.props.navigator.push({title: "CashIn"})
-        }}>
-        <Text>Go To CashIn</Text>
-      </TouchableHighlight>
-        
-      <TouchableHighlight onPress={() => {
-        this.props.navigator.push({title: "CashIn"})
-        }}>
-      <Text>Go To CashIn</Text>
-      </TouchableHighlight>
+        <TouchableHighlight onPress={() => {
+          this.props.navigator.push({title: "CashIn"})
+          }}>
+          <Image
+            source = {require('../graphics/coin.png')}
+            >
+          </Image>
+        </TouchableHighlight>
       </View>
     );
   }
   
   renderHealth() {
+  	let imgFile = require('../graphics/health0.png');
+    health = this.props.getHungerStat();
+    if (health > 80) {
+      imgFile = require('../graphics/health4.png');
+    }
+    else if (health > 60) {
+      imgFile = require('../graphics/health3.png');
+    }
+    else if (health > 40) {
+      imgFile = require('../graphics/health2.png');
+    }
+    else if (health > 20{
+      imgFile = require('../graphics/health1.png');
+    } 
+    else {
+      imgFile = require('../graphics/health0.png');
+    }
+    return (
+       <Image source = {imgFile} style = {{width: 60, height: 60}}/>
+    	);
+
+  }
+
+  renderHunger() {
   	let imgFile = require('../graphics/hunger0.png');
     health = this.props.getHungerStat();
     if (health > 75) {
@@ -99,9 +120,28 @@ export default class Home extends Component{
       imgFile = require('../graphics/hunger0.png');
     }
     return (
-       <Image source = {imgFile} style = {{width: 50, height: 50}}/>
+       <Image source = {imgFile} style = {{width: 60, height: 60}}/>
     	);
 
   }
+
+  renderHappiness() {
+  	let imgFile = require('../graphics/happiness1.png');
+    health = this.props.getHungerStat();
+    if (health > 67) {
+      imgFile = require('../graphics/hunger3.png');
+    }
+    else if (health > 33) {
+      imgFile = require('../graphics/hunger2.png');
+    }
+    else {
+      imgFile = require('../graphics/hunger1.png');
+    }
+    return (
+       <Image source = {imgFile} style = {{width: 60, height: 60}}/>
+    );
+
+  }
+
 
 }
