@@ -1,7 +1,17 @@
 import React, { Component } from 'react';
-import { AppRegistry, Navigator, Text, View, TouchableHighlight, AysncStorage } from 'react-native';
+import { AppRegistry, Navigator, Text, View, TouchableHighlight, AsyncStorage } from 'react-native';
 
-var AppleHealthKit = require('react-native-apple-healthkit');
+//var AppleHealthKit = require('react-native-apple-healthkit');
+import AppleHealthKit from 'react-native-apple-healthkit';
+
+const HKPERMS = AppleHealthKit.Constants.Permissions;
+const HKOPTIONS = {
+    permissions: {
+        read:  [
+            HKPERMS.StepCount
+        ]
+    }
+};
  
 
 export default class CashIn extends Component{
@@ -10,11 +20,7 @@ export default class CashIn extends Component{
     
     this.state = {steps: "None"};
     
-    let options = {
-      permissions: {
-        read: ["StepCount"]
-      }
-    }
+    
     let lastStepTimeStamp = -1;
     let lastNumSteps = -1;
     let currentNumSteps = -1;
@@ -23,34 +29,47 @@ export default class CashIn extends Component{
         this.state = {steps: "HK Available"};
     }
     });
-//    AppleHealthKit.initHealthKit(options: Object, (err: Object, res: Object) => {
-//    if(err) {
-//        this.setState({steps: "Error Initializing HealthKit"});
-//        return;
-//    }
-//    // healthkit initialized... 
-//    let lastTimeStamp = this.getKeyFromStorage('HealthData:lastTimestamp');
-//    if(lastTimeStamp == undefined){
-//      lastTimeStamp = (new Date()).toISOString();
-//      this.setKeyToStorage('HealthData:lastTimestamp',curTimeStamp);
-//    }
-//    let aggregate = this.getKeyFromStorage("HealthData:aggregate");
-//    if(aggregate == undefined){
-//      aggregate = 0;
-//      this.setKeyToStorage("HealthData:aggregate",aggregate);
-//    }
-//    let now = (new Date()).toISOString();
-//    aggregate = aggregate + this.getStepCountsBetween(lastTimeStamp,now);
-//    lastTimeStamp = now;
-//    this.setKeyToStorage("HealthData:aggregate",aggregate);
-//    this.setKeyToStorage('HealthData:lastTimestamp', lastTimeStamp);
-//});
+    AppleHealthKit.initHealthKit(HKOPTIONS: Object, (err: Object, res: Object) => {
+    if(err) {
+        this.setState({steps: "Error Initializing HealthKit"});
+        return;
+    }
+    // healthkit initialized... 
+    AsyncStorage.removeItem('HealthData:lastTimestamp');
+    let lastTimeStamp = this.getKeyFromStorage('HealthData:lastTimestamp');
+    if(lastTimeStamp == undefined){
+      lastTimeStamp = (new Date()).toISOString();
+      this.setKeyToStorage('HealthData:lastTimestamp',lastTimeStamp);
+    }
+    
+    let checker = new Date(lastTimeStamp);
+    if(checker == NaN){
+      lastTimeStamp = (new Date()).toISOString();
+      this.setKeyToStorage('HealthData:lastTimestamp',lastTimeStamp);
+    }
+      
+      
+    let aggregate = this.getKeyFromStorage("HealthData:aggregate");
+    if(aggregate == undefined){
+      aggregate = 0;
+      this.setKeyToStorage("HealthData:aggregate",aggregate);
+    }
+//    lastTimeStamp = (new Date(2016,10,21)).toISOString();
+    aggregate = aggregate + this.getStepCountsBetween(lastTimeStamp);
+    lastTimeStamp = (new Date()).toISOString();
+    this.setKeyToStorage("HealthData:aggregate",aggregate);
+    this.setKeyToStorage('HealthData:lastTimestamp', lastTimeStamp);
+});
   }
+
+  
+  
+  
   render() {
     return (
       <View style= {{}}>
         <Text style={{paddingTop:10}}> CashIn </Text>
-        <Text>this.state.text</Text>
+        <Text>{this.state.steps}</Text>
           <TouchableHighlight onPress= {() => {
               this.props.navigator.pop();
             }}>
@@ -63,7 +82,7 @@ export default class CashIn extends Component{
   }
   async getKeyFromStorage(key){
     try {
-      const value = await AsyncStorage.getItem(key);
+      const value = await AsyncStorage.getItem("@" + key);
       if (value !== null){
         return value;
       } else {
@@ -76,35 +95,30 @@ export default class CashIn extends Component{
 
   async setKeyToStorage(key,value){
     try {
-      await AsyncStorage.setItem(key,value);
+      await AsyncStorage.setItem("@" + key,value);
     } catch (error) {
       this.setState({steps: "Error setting " + key + "to storage."});
     }
   }
 
-  getStepCountsBetween(startTS, endTS){
+  getStepCountsBetween(startTS){
     if(!startTS){
       return;
     }
-    let newDate;
-    if(!endTS){
-      endTS = (new Date()).toISOString();
-    }
+    
     let options = {
-      startDate: startTS,  // required 
-      endDate:   endTS         // optional; default now 
+      startDate: startTS  // required
     };
     
-    let retVal = -1;
-    AppleHealthKit.getDailyStepCountSamples(options, (err, res) => {
-      if(this._handleHealthKitError(err, 'getDailyStepCountSamples')){
+    AppleHealthKit.getStepCount(options, (err, res) => {
+      if(err){
+        this.setState({steps: "Error reading " + err + " from storage."});
         return;
       }
-        retVal = res[0].value;
+        return res.value;
       }
     );
     
-    return retVal;
   }
 
 
