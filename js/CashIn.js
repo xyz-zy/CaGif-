@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { AppRegistry, Navigator, Text, View, TouchableHighlight, AsyncStorage } from 'react-native';
-
+/*
 //var AppleHealthKit = require('react-native-apple-healthkit');
 import AppleHealthKit from 'react-native-apple-healthkit';
 
@@ -122,4 +122,11 @@ export default class CashIn extends Component{
   }
 
 
+}
+*/
+
+class CashIn extends Component {
+	render() {
+		return <View> </View>;
+	}
 }

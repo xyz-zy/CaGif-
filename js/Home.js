@@ -92,7 +92,7 @@ export default class Home extends Component{
     else if (health > 40) {
       imgFile = require('../graphics/health2.png');
     }
-    else if (health > 20{
+    else if (health > 20){
       imgFile = require('../graphics/health1.png');
     } 
     else {
