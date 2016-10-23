@@ -24,13 +24,17 @@ export default class Home extends Component{
 
   renderTopButtons(){
     return(
-      <View flexDirection = 'row' justifyContent = 'space-between' top={15} left = {5} right = {5}>
+      <View flexDirection = 'row' justifyContent = 'space-between' top={30} left = {15} right = {15}>
             <TouchableHighlight onPress={() => {
                   this.props.navigator.push({title: "Store"})
                 }}>
                 <Image 
                   style={{width: 83, height: 83}}
-                  source={require('../graphics/storeIcon.png')}>
+                  source={require('../graphics/iconBG2.png')}>
+                  <Image
+                      style={{width: 83, height: 83}}
+                      source={require('../graphics/storeIcon.png')}>
+                  </Image>
                 </Image>
             </TouchableHighlight>
           <TouchableHighlight onPress={() => {
@@ -39,6 +43,10 @@ export default class Home extends Component{
               <Image
                   style={{width: 83, height: 83}}
                   source={require('../graphics/backpack.png')}>
+                <Image
+                    style={{width: 83, height: 83}}
+                    source={require('../graphics/storeIcon.png')}>
+                </Image>
               </Image>
           </TouchableHighlight>
         </View>
@@ -63,7 +71,7 @@ export default class Home extends Component{
 
   renderMenuButtons() {
     return(
-      <View>
+      <View flexDirection = 'row' left = {20} right = {20} justifyContent = 'space-between'>
           {this.renderHealth()}
           {this.renderHunger()}
           {this.renderHappiness()}
@@ -98,7 +106,7 @@ export default class Home extends Component{
       imgFile = require('../graphics/health0.png');
     }
     return (
-       <Image source = {imgFile} style = {{width: 60, height: 60}}/>
+       <Image source = {imgFile} style = {{width: 83, height: 83}}/>
     	);
 
   }
@@ -119,7 +127,7 @@ export default class Home extends Component{
       imgFile = require('../graphics/hunger0.png');
     }
     return (
-       <Image source = {imgFile} style = {{width: 60, height: 60}}/>
+       <Image source = {imgFile} style = {{width: 83, height: 83}}/>
     	);
 
   }
@@ -137,7 +145,7 @@ export default class Home extends Component{
       imgFile = require('../graphics/hunger1.png');
     }
     return (
-       <Image source = {imgFile} style = {{width: 60, height: 60}}/>
+       <Image source = {imgFile} style = {{width: 83, height: 83}}/>
     );
 
   }
