@@ -24,13 +24,13 @@ export default class Home extends Component{
 
   renderTopButtons(){
     return(
-      <View flexDirection = 'row' justifyContent = 'space-between' top='15' left = '5' right = '5'>
+      <View flexDirection = 'row' justifyContent = 'space-between' top={15} left = {5} right = {5}>
             <TouchableHighlight onPress={() => {
                   this.props.navigator.push({title: "Store"})
                 }}>
                 <Image 
                   style={{width: 83, height: 83}}
-                  source={require('../storeIcon.png')}>
+                  source={require('../graphics/storeIcon.png')}>
                 </Image>
             </TouchableHighlight>
           <TouchableHighlight onPress={() => {
@@ -38,7 +38,7 @@ export default class Home extends Component{
           }}>
               <Image
                   style={{width: 83, height: 83}}
-                  source={require('../backpack.png')}>
+                  source={require('../graphics/backpack.png')}>
               </Image>
           </TouchableHighlight>
         </View>
@@ -55,7 +55,7 @@ export default class Home extends Component{
         left = {5}
         alignItems = 'center'
         >
-          renderMenuButtons();
+          {this.renderMenuButtons()}
       </Image>
     );
   }
@@ -64,9 +64,9 @@ export default class Home extends Component{
   renderMenuButtons() {
     return(
       <View>
-          renderHealth();
-          renderHunger();
-          renderHappiness();
+          {this.renderHealth()}
+          {this.renderHunger()}
+          {this.renderHappiness()}
         <TouchableHighlight onPress={() => {
           this.props.navigator.push({title: "CashIn"})
           }}>

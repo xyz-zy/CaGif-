@@ -14,31 +14,28 @@ class CaGifApp extends Component {
   constructor() {
     super();
     this.state = {healthStat: 0, hungerStat: 0, happinessStat: 0, pawPoints : 100};
-    this.addHunger = this.addHunger.bind(this);
       this.addStats = this.addStats.bind(this);
       this.getHealth = this.getHealth.bind(this);
       this.getHunger = this.getHunger.bind(this);
       this.getHappiness = this.getHappiness.bind(this);
-
       this.addPawPoints = this.addPawPoints.bind(this);
       this.getPawPoints = this.getPawPoints.bind(this);
-
-
   }
 
   render() {
     return (
       <Navigator
-        initialRoute={{ title: 'Sprite' }}
+        initialRoute={{ title: 'Home' }}
         renderScene={(route, navigator) => {
           if(route.title == "Sprite"){
             return <Sprite navigator = {navigator} getHungerStat = {this.getHunger}/>;
-          /*if(route.title == "Home"){
+          }
+          if(route.title == "Home"){
             return <Home navigator = {navigator}
                          getHealthStat = {this.getHealth}
                          getHungerStat = {this.getHunger}
                          getHappinessStat = {this.getHappiness}/>;
-          }*/
+          }
           if(route.title == "Inventory"){
             return <Inventory navigator = {navigator} changeStats = {this.addStats}/>;
           }

@@ -6,8 +6,11 @@ export default class Sprite extends Component{
 
   constructor(props) {
     super(props); 
-    this.counter = 0;
-    }
+    this.state = {counter: 1};
+    setInterval(() => {
+      this.setState({counter: this.state.counter == 28 ? 1 : this.state.counter + 1});
+    }, 60);
+  }
 
   render(){
     return (
@@ -16,9 +19,9 @@ export default class Sprite extends Component{
           style = {{flex: 1, width: null, height: null}}>
           {this.renderButtons()}
           {this.renderMenu()}
+          {this.renderSprite()}
           <View style={{flex:1, alignItems:'flex-end', flexDirection:'row', justifyContent:'space-between'}}>
            {this.renderHunger()}
-           {this.renderSprite()}
           </View>
       </Image>
     );
@@ -27,42 +30,100 @@ export default class Sprite extends Component{
 renderSprite() {
 	let imgFile = require('../graphics/cat/idle1.png');
     health = this.props.getHungerStat();
-    if (this.counter == 1) {
+    if (this.state.counter == 1 || this.state.counter == 11) {
       imgFile = require('../graphics/cat/idle1.png');
     }
-    else if (this.counter == 2) {
+    else if (this.state.counter == 2 || this.state.counter == 12) {
       imgFile = require('../graphics/cat/idle2.png');
     }
-    else if (this.counter == 3) {
+    else if (this.state.counter == 3 || this.state.counter == 13) {
       imgFile = require('../graphics/cat/idle3.png');
     }
-    else if (this.counter == 4){
+    else if (this.state.counter == 4 || this.state.counter == 14){
       imgFile = require('../graphics/cat/idle4.png');
     } 
-    else if (this.counter == 5) {
+    else if (this.state.counter == 5 || this.state.counter == 15) {
       imgFile = require('../graphics/cat/idle5.png');
     }
-    else if (this.counter == 6) {
+    else if (this.state.counter == 6 || this.state.counter == 16) {
       imgFile = require('../graphics/cat/idle6.png');
     }
-    else if (this.counter == 7) {
+    else if (this.state.counter == 7 || this.state.counter == 17) {
       imgFile = require('../graphics/cat/idle7.png');
     }
-    else if (this.counter == 8) {
+    else if (this.state.counter == 8 || this.state.counter == 18) {
       imgFile = require('../graphics/cat/idle8.png');
     }
-    else if (this.counter == 9) {
+    else if (this.state.counter == 9 || this.state.counter == 19) {
       imgFile = require('../graphics/cat/idle9.png');
     }
-    else if (this.counter == 10) {
+    else if (this.state.counter == 10 || this.state.counter == 20) {
       imgFile = require('../graphics/cat/idle10.png');
     }
-    counter = counter + 1;
-    if (counter = 11) {
-    	counter = 1;
+    else if (this.state.counter > 10) {
+    	health = this.props.getHungerStat();
+	    if (health > 75) {
+	    	if (this.state.counter == 21) {
+	      		imgFile = require('../graphics/cat/jump1.png');
+	  		}
+	  		if (this.state.counter == 22) {
+	      		imgFile = require('../graphics/cat/jump2.png');
+	  		}
+	  		if (this.state.counter == 23) {
+	      		imgFile = require('../graphics/cat/jump3.png');
+	  		}
+	  		if (this.state.counter == 24) {
+	      		imgFile = require('../graphics/cat/jump4.png');
+	  		}
+	  		if (this.state.counter == 25) {
+	      		imgFile = require('../graphics/cat/jump5.png');
+	  		}
+	  		if (this.state.counter == 26) {
+	      		imgFile = require('../graphics/cat/jump6.png');
+	  		}
+	  		if (this.state.counter == 27) {
+	      		imgFile = require('../graphics/cat/jump7.png');
+	  		}
+	  		if (this.state.counter == 28) {
+	      		imgFile = require('../graphics/cat/jump8.png');
+	  		}
+	    }
+	    else {//(health > 50) {
+	      	if (this.state.counter == 21) {
+	      		imgFile = require('../graphics/cat/hurt1.png');
+	  		}
+	  		if (this.state.counter == 22) {
+	      		imgFile = require('../graphics/cat/hurt2.png');
+	  		}
+	  		if (this.state.counter == 23) {
+	      		imgFile = require('../graphics/cat/hurt3.png');
+	  		}
+	  		if (this.state.counter == 24) {
+	      		imgFile = require('../graphics/cat/hurt4.png');
+	  		}
+	  		if (this.state.counter == 25) {
+	      		imgFile = require('../graphics/cat/hurt5.png');
+	  		}
+	  		if (this.state.counter == 26) {
+	      		imgFile = require('../graphics/cat/hurt6.png');
+	  		}
+	  		if (this.state.counter == 27) {
+	      		imgFile = require('../graphics/cat/hurt7.png');
+	  		}
+	  		if (this.state.counter == 28) {
+	      		imgFile = require('../graphics/cat/hurt8.png');
+	  		}
+	    }
+	    // else if (health > 25) {
+	    //   imgFile = require('../graphics/hunger1.png');
+	    // }
+	    // else {
+	    //   imgFile = require('../graphics/hunger0.png');
+	    // }
     }
+
     return (
-       <Image source = {imgFile} style = {{width: 60, height: 60}}/>
+       <Image source = {imgFile} style = {{width: 300, height: 300}}/>
     	);
 }
 
